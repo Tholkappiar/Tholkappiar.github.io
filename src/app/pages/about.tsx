@@ -106,12 +106,33 @@ const AboutPage: React.FC = () => {
                 {/* Info Cards */}
                 <div className="col-span-6 md:col-span-2 flex flex-col items-center gap-4">
                     <Module
-                        className="col-span-3 md:col-span-2 w-full flex flex-1"
+                        className="col-span-3 md:col-span-2 w-full flex flex-1 items-center justify-center py-2 bg-gray-800/50 rounded-lg"
                         size="small"
                     >
-                        <div className="flex items-center space-x-2 text-gray-200 w-full justify-evenly">
-                            <GithubIcon className="w-7 h-7 text-gray-400" />
-                            <File className="w-7 h-7 text-gray-400" />
+                        <div className="flex items-center justify-evenly w-full px-4">
+                            <a
+                                href="https://github.com/username"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label="Visit my GitHub profile"
+                                className="group relative flex flex-col items-center"
+                            >
+                                <GithubIcon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                                <span className="text-xs text-gray-400 mt-1 group-hover:text-white">
+                                    GitHub
+                                </span>
+                            </a>
+                            <a
+                                href="http://google.com"
+                                download
+                                aria-label="Download my resume"
+                                className="group relative flex flex-col items-center"
+                            >
+                                <File className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                                <span className="text-xs text-gray-400 mt-1 group-hover:text-white">
+                                    Resume
+                                </span>
+                            </a>
                         </div>
                     </Module>
 

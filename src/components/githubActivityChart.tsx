@@ -1,45 +1,65 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface Contribution {
+    date: string;
+    count: number;
+    level: 0 | 1 | 2 | 3 | 4;
+}
+
+interface GitHubContributionResponse {
+    total: {
+        [year: number]: number;
+        lastYear?: number;
+    };
+    contributions: Contribution[];
+}
 
 export const GitHubActivityChart = () => {
-    const [activityData, setActivityData] = useState([]);
+    const [activityData, setActivityData] = useState<Contribution[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        // Generate mock GitHub activity data for the past year
-        const generateMockData = () => {
-            const data = [];
-            const today = new Date();
+        const fetchGitHubActivity = async () => {
+            setIsLoading(true);
+            try {
+                // Fetch contributions from github-contributions-api
+                const response = await axios.get<GitHubContributionResponse>(
+                    `https://github-contributions-api.jogruber.de/v4/hkirat?y=last`,
+                    {
+                        headers: {
+                            Accept: "application/json",
+                        },
+                    }
+                );
 
-            for (let i = 364; i >= 0; i--) {
-                const date = new Date(today);
-                date.setDate(date.getDate() - i);
+                const contributions = response.data.contributions;
 
-                // Random contribution count (0-10)
-                const contributions = Math.floor(Math.random() * 11);
-
-                data.push({
-                    date: date.toISOString().split("T")[0],
-                    contributions,
-                    level:
-                        contributions === 0
-                            ? 0
-                            : contributions <= 2
-                            ? 1
-                            : contributions <= 4
-                            ? 2
-                            : contributions <= 6
-                            ? 3
-                            : 4,
-                });
+                // Validate and set data
+                if (contributions && contributions.length > 0) {
+                    setActivityData(contributions);
+                    setError(null);
+                } else {
+                    setError("No contribution data available for this user.");
+                    setActivityData([]);
+                }
+            } catch (err) {
+                console.error("Error fetching GitHub activity:", err);
+                setError(
+                    "Failed to fetch GitHub activity. Please try again later."
+                );
+                setActivityData([]);
+            } finally {
+                setIsLoading(false);
             }
-            return data;
         };
-
-        setActivityData(generateMockData());
+        fetchGitHubActivity();
     }, []);
 
-    const getColorClass = (level) => {
+    const getColorClass = (level: number): string => {
         const colors = [
             "bg-gray-800", // 0 contributions
             "bg-green-900", // 1-2 contributions
@@ -78,24 +98,35 @@ export const GitHubActivityChart = () => {
                 </div>
             </div>
 
-            <div className="flex space-x-0.5 overflow-x-auto">
-                {weeks.map((week, weekIndex) => (
-                    <div key={weekIndex} className="flex flex-col space-y-0.5">
-                        {week.map((day, dayIndex) => (
-                            <div
-                                key={day.date}
-                                className={`w-2 h-2 rounded-sm ${getColorClass(
-                                    day.level
-                                )} hover:ring-1 hover:ring-white/20 transition-all cursor-pointer`}
-                                title={`${day.contributions} contributions on ${day.date}`}
-                            />
-                        ))}
-                    </div>
-                ))}
-            </div>
+            {isLoading ? (
+                <div className="text-xs text-gray-400">
+                    Loading contributions...
+                </div>
+            ) : error ? (
+                <div className="text-xs text-red-400">{error}</div>
+            ) : (
+                <div className="flex space-x-0.5 overflow-x-auto">
+                    {weeks.map((week, weekIndex) => (
+                        <div
+                            key={weekIndex}
+                            className="flex flex-col space-y-0.5"
+                        >
+                            {week.map((day) => (
+                                <div
+                                    key={day.date}
+                                    className={`w-2 h-2 rounded-sm ${getColorClass(
+                                        day.level
+                                    )} hover:ring-1 hover:ring-white/20 transition-all cursor-pointer`}
+                                    title={`${day.count} contributions on ${day.date}`}
+                                />
+                            ))}
+                        </div>
+                    ))}
+                </div>
+            )}
 
             <div className="text-xs text-gray-400">
-                {activityData.reduce((sum, day) => sum + day.contributions, 0)}{" "}
+                {activityData.reduce((sum, day) => sum + day.count, 0)}{" "}
                 contributions in the last year
             </div>
         </div>
