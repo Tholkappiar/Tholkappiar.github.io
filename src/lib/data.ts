@@ -74,9 +74,6 @@ export const experience: Experience[] = [
 ];
 
 export const techStack: TechStack = {
-    Languages: ["JavaScript", "TypeScript", "Python", "Go"],
-    Frontend: ["React", "Next.js", "Vue.js", "Tailwind CSS"],
-    Backend: ["Node.js", "Express", "FastAPI", "PostgreSQL"],
-    Tools: ["Git", "Docker", "AWS", "Figma"],
-    "Currently Exploring": ["Electron", "LLM"],
+    "Currently working": ["JavaScript", "TypeScript", "Python", "Go"],
+    "Experience with": ["React", "Next.js", "Vue.js", "Tailwind CSS"],
 };

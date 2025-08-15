@@ -9,7 +9,13 @@ const StackPage: React.FC = () => {
     ]): JSX.Element => (
         <Module key={category}>
             <div className="flex items-center space-x-2 mb-4">
-                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div
+                    className={`w-2 h-2 rounded-full ${
+                        category === "Currently working"
+                            ? "bg-green-500"
+                            : "bg-blue-500"
+                    }`}
+                ></div>
                 <h3 className="text-sm font-medium text-white">{category}</h3>
             </div>
             <div className="flex flex-wrap gap-2">

@@ -4,6 +4,7 @@ import type { Experience } from "../types";
 import { experience } from "@/lib/data";
 import { Module } from "./shared";
 import { GitHubActivityChart } from "@/components/githubActivityChart";
+import Link from "next/link";
 
 const AboutPage: React.FC = () => {
     const renderExperienceItem = (
@@ -141,17 +142,20 @@ const AboutPage: React.FC = () => {
                         className="col-span-6 md:col-span-2 w-full flex flex-1 items-center justify-center hover:cursor-pointer hover:border-blue-800"
                         hover={false}
                     >
-                        <div className="flex items-center space-x-4">
+                        <Link
+                            href="/contact"
+                            className="flex items-center space-x-4"
+                        >
                             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                             <div className="flex flex-col gap-1">
                                 <div className="text-xs text-gray-300">
                                     Available for work
                                 </div>
-                                <div className="text-xs text-gray-500">
-                                    [ Click here to contact me ]
+                                <div className="text-xs text-blue-400 hover:text-blue-300 transition-colors">
+                                    Connect with me
                                 </div>
                             </div>
-                        </div>
+                        </Link>
                     </Module>
                 </div>
 

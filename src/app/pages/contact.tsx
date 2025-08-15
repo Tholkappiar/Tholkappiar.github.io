@@ -41,9 +41,8 @@ const ContactPage: React.FC = () => {
 
     const availableServices: string[] = [
         "Full-time roles",
+        "Remote work",
         "Contract work",
-        "Consulting",
-        "Open source",
     ];
 
     const renderContactMethod = (
@@ -86,46 +85,90 @@ const ContactPage: React.FC = () => {
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4">
-                <Module>
-                    <h3 className="text-sm font-medium text-white mb-4 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                        <span>Reach Out</span>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className="md:col-span-2 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-4">
+                    <h3 className="text-lg text-gray-300 ml-1 mt-2 mb-2">
+                        Send a Message
                     </h3>
-                    <div className="space-y-3">
-                        {contactMethods.map(renderContactMethod)}
-                    </div>
-                </Module>
+                    <form
+                        action="https://formsubmit.co/alex@example.com"
+                        method="POST"
+                        className="space-y-4 my-8"
+                    >
+                        <input
+                            type="hidden"
+                            name="_subject"
+                            value="New Portfolio Contact"
+                        />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input
+                            type="hidden"
+                            name="_next"
+                            value="https://your-site.com/thanks"
+                        />
 
-                <Module>
-                    <h3 className="text-sm font-medium text-white mb-4 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span>Status</span>
-                    </h3>
-                    <div className="space-y-3">
-                        <div className="p-3 bg-green-900/20 rounded-lg border border-green-800/50">
-                            <div className="text-xs font-medium text-green-400 mb-1">
-                                Currently available
+                        <div>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Your Name"
+                                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-xs text-gray-300 placeholder-gray-500 border-none outline-none"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Your Email"
+                                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-xs text-gray-300 placeholder-gray-500 border-none outline-none"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <textarea
+                                name="message"
+                                placeholder="Your Message"
+                                rows={4}
+                                className="w-full bg-gray-800/50 border border-gray-700 rounded-lg p-4 text-xs text-gray-300 placeholder-gray-500 border-none outline-none"
+                                required
+                            ></textarea>
+                        </div>
+                        <button
+                            type="submit"
+                            className="mt-2 w-full bg-blue-900/30 text-blue-400 border border-blue-800 rounded-lg p-4 text-xs font-medium hover:bg-blue-900/50 transition-colors"
+                        >
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div className="grid md:grid-rows-2 gap-4">
+                    <Module>{contactMethods.map(renderContactMethod)}</Module>
+                    <Module>
+                        <div className="space-y-3">
+                            <div className="p-3 bg-green-900/20 rounded-lg border border-green-800/50">
+                                <div className="text-xs font-medium text-green-400 mb-1">
+                                    Currently available
+                                </div>
+                                <div className="text-xs text-gray-500">
+                                    Open to new opportunities
+                                </div>
                             </div>
-                            <div className="text-xs text-gray-500">
-                                Open to new opportunities
+
+                            <div className="space-y-1.5">
+                                {availableServices.map(renderServiceItem)}
+                            </div>
+
+                            <div className="pt-3 border-t border-gray-800">
+                                <div className="text-xs text-gray-500">
+                                    Response time: 24h
+                                </div>
                             </div>
                         </div>
-
-                        <div className="space-y-1.5">
-                            {availableServices.map(renderServiceItem)}
-                        </div>
-
-                        <div className="pt-3 border-t border-gray-800">
-                            <div className="text-xs text-gray-500">
-                                Response time: 24h
-                            </div>
-                        </div>
-                    </div>
-                </Module>
+                    </Module>
+                </div>
             </div>
 
-            {/* Location Info */}
             <Module className="text-center" hover={false}>
                 <div className="flex items-center justify-center space-x-4 text-xs text-gray-500">
                     <span>San Francisco, CA</span>
