@@ -24,9 +24,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en"> 
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gradient-to-br from-gray-950 via-black to-gray-950`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col 
+                bg-gradient-to-br from-gray-50 via-white to-gray-100 
+                dark:from-gray-950 dark:via-black dark:to-gray-950`}
             >
                 {children}
                 <Footer />

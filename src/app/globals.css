@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @theme {
     --font-head: var(--font-head);
@@ -31,7 +32,7 @@
     --color-border: var(--border);
 }
 
-:root {
+/* :root {
     --background: #fff;
     --foreground: #000;
     --card: #fff;
@@ -48,9 +49,9 @@
     --destructive: #e63946;
     --destructive-foreground: #fff;
     --border: #000;
-}
+} */
 
-.dark {
+/* .dark {
     --background: #1a1a1a;
     --foreground: #f5f5f5;
     --card: #242424;
@@ -67,12 +68,16 @@
     --destructive: #e63946;
     --destructive-foreground: #fff;
     --border: #3a3a3a;
-}
-
+} */
+ 
 /* For autofill inputs  */
 input:-webkit-autofill,
 textarea:-webkit-autofill {
     background-color: #1e2939 !important;
     -webkit-text-fill-color: #d1d5dc !important;
     transition: background-color 9999s ease-in-out 0s;
+}
+
+.temp { 
+    background-color: red;
 }
