@@ -6,6 +6,7 @@ import AboutPage from "./pages/about";
 import BlogsPage from "./pages/blogs";
 import ContactPage from "./pages/contact";
 import StackPage from "./pages/stack";
+import { ThemeToggleButton } from "@/components/ToggleButton";
 
 interface NavigationItem {
     id: string;
@@ -61,16 +62,18 @@ const Portfolio: React.FC = () => {
                             <button
                                 key={item.id}
                                 onClick={() => handleSectionChange(item.id)}
-                                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-300 ${
-                                    activeSection === item.id
-                                        ? "bg-white text-black shadow-lg"
-                                        : "text-gray-400 hover:text-white hover:bg-gray-800/50"
-                                }`}
+                                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-300 ${activeSection === item.id
+                                    ? "bg-white text-black shadow-lg"
+                                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                                    }`}
                             >
                                 <item.icon className="w-3 h-3" />
                                 <span>{item.label}</span>
                             </button>
                         ))}
+                        <div className="ml-auto">
+                            <ThemeToggleButton />
+                        </div>
                     </nav>
                 </header>
 

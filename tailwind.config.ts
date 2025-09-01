@@ -6,23 +6,14 @@ const config: Config = {
         "./components/**/*.{js,ts,jsx,tsx,mdx}",
         "./app/**/*.{js,ts,jsx,tsx,mdx}",
     ],
-    darkMode: 'class', // Enable dark mode
+    darkMode: "class",
     theme: {
         extend: {
             typography: ({ theme }) => ({
-                // Base prose styles
-                DEFAULT: {
-                    css: {
-                        pre: {
-                            backgroundColor: theme('colors.gray.100'),
-                        },
-                    },
-                },
-                // Dark mode prose styles
                 invert: {
                     css: {
                         pre: {
-                            backgroundColor: theme('colors.red.600'), 
+                            backgroundColor: theme('colors.gray.800'), 
                         },
                     },
                 },

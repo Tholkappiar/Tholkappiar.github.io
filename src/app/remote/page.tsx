@@ -1,5 +1,6 @@
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import matter from "gray-matter";
+import { ThemeToggleButton } from "@/components/ToggleButton";
 
 export default async function RemoteMdxPage() {
   const url =
@@ -11,8 +12,11 @@ export default async function RemoteMdxPage() {
   const { content, data } = matter(file);
 
   return (
-    <div className="prose dark:prose-invert dark:prose-cyan mx-auto my-10">
+    <div className="prose prose-blue dark:prose-invert dark:prose-cyan mx-auto my-10">
       {/* use frontmatter data */}
+      <div className="flex justify-end">
+        <ThemeToggleButton />
+      </div>
       <h1>{data.title}</h1>
       <p className="text-gray-500">{data.date}</p>
       <p className="italic">{data.description}</p>
