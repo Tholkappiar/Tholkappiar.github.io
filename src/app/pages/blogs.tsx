@@ -6,15 +6,15 @@ const BlogsPage: React.FC = () => {
     const renderBlogCard = (blog: BlogPost, index: number): JSX.Element => (
         <div
             key={index}
-            className="group cursor-pointer h-full flex gap-8 items-center group select-none"
+            className="group cursor-pointer h-full flex gap-8 items-center select-none"
         >
-            <div className="text-xs text-gray-500 w-20">{blog.date}</div>
+            <div className="text-xs text-muted-foreground w-20">{blog.date}</div>
             <h3
-                className="relative text-sm font-medium text-gray-400 transition-colors
+                className="relative text-sm font-medium text-muted transition-colors
              after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
              after:h-[2px] after:w-full after:bg-current after:scale-x-0
              after:origin-left after:transition-transform after:duration-300 after:ease-linear
-             group-hover:after:scale-x-100"
+             group-hover:after:scale-x-100 group-hover:text-foreground"
             >
                 {blog.title}
             </h3>
@@ -24,12 +24,8 @@ const BlogsPage: React.FC = () => {
     return (
         <div className="w-full space-y-6">
             <div className="mb-8">
-                <h2 className="text-lg font-semibold text-white mb-2">
-                    Blog Posts
-                </h2>
-                <p className="text-sm text-gray-400">
-                    Thoughts on development, design, and tech
-                </p>
+                <h2 className="text-lg font-semibold text-foreground mb-2">Blog Posts</h2>
+                <p className="text-sm text-muted">Thoughts on development, design, and tech</p>
             </div>
 
             <div className="space-y-4">{blogs.map(renderBlogCard)}</div>

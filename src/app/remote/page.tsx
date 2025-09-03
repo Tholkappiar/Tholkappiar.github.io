@@ -3,8 +3,7 @@ import matter from "gray-matter";
 import { ThemeToggleButton } from "@/components/ToggleButton";
 
 export default async function RemoteMdxPage() {
-  const url =
-    "https://raw.githubusercontent.com/vyvir/althea/refs/heads/main/README.md";
+  const url = "https://raw.githubusercontent.com/vyvir/althea/refs/heads/main/README.md";
   const res = await fetch(url, { cache: "no-store" });
   const file = await res.text();
 
@@ -12,14 +11,13 @@ export default async function RemoteMdxPage() {
   const { content, data } = matter(file);
 
   return (
-    <div className="prose prose-blue dark:prose-invert dark:prose-cyan mx-auto my-10">
-      {/* use frontmatter data */}
+    <div className="prose mx-auto my-10 prose-a:text-primary prose-blockquote:text-muted">
       <div className="flex justify-end">
         <ThemeToggleButton />
       </div>
-      <h1>{data.title}</h1>
-      <p className="text-gray-500">{data.date}</p>
-      <p className="italic">{data.description}</p>
+      <h1 className="text-foreground">{data.title}</h1>
+      <p className="text-xs text-muted-foreground">{data.date}</p>
+      <p className="italic text-muted">{data.description}</p>
 
       {/* render markdown content */}
       <MDXRemote source={content} options={{ mdxOptions: { format: "md" } }} />

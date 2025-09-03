@@ -26,16 +26,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    storageKey="theme"
-                >
-                    <div className="min-h-screen flex flex-col bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-black dark:to-gray-950 transition-colors duration-1000">
-                        {children}
-                    </div>
+            <body
+                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col flex-1 bg-background text-foreground transition-colors duration-500`}
+            >
+                <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
+                    {children}
                 </ThemeProvider>
                 <Footer />
             </body>

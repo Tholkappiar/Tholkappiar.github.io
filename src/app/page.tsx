@@ -57,14 +57,14 @@ const Portfolio: React.FC = () => {
                     </div>
 
                     {/* Modern Navigation */}
-                    <nav className="flex space-x-1 p-1 bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800">
+                    <nav className="flex space-x-1 p-1 bg-card backdrop-blur-sm rounded-xl border border-border">
                         {navigation.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => handleSectionChange(item.id)}
                                 className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-300 ${activeSection === item.id
-                                    ? "bg-white text-black shadow-lg"
-                                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                                        ? "bg-primary text-primary-foreground shadow-lg"
+                                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
                                     }`}
                             >
                                 <item.icon className="w-3 h-3" />
@@ -75,6 +75,7 @@ const Portfolio: React.FC = () => {
                             <ThemeToggleButton />
                         </div>
                     </nav>
+
                 </header>
 
                 {/* Content */}

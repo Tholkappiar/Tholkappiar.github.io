@@ -26,19 +26,12 @@ export const GitHubActivityChart = () => {
         const fetchGitHubActivity = async () => {
             setIsLoading(true);
             try {
-                // Fetch contributions from github-contributions-api
                 const response = await axios.get<GitHubContributionResponse>(
                     `https://github-contributions-api.jogruber.de/v4/hkirat?y=last`,
-                    {
-                        headers: {
-                            Accept: "application/json",
-                        },
-                    }
+                    { headers: { Accept: "application/json" } }
                 );
 
                 const contributions = response.data.contributions;
-
-                // Validate and set data
                 if (contributions && contributions.length > 0) {
                     setActivityData(contributions);
                     setError(null);
@@ -48,30 +41,32 @@ export const GitHubActivityChart = () => {
                 }
             } catch (err) {
                 console.error("Error fetching GitHub activity:", err);
-                setError(
-                    "Failed to fetch GitHub activity. Please try again later."
-                );
+                setError("Failed to fetch GitHub activity. Please try again later.");
                 setActivityData([]);
             } finally {
                 setIsLoading(false);
             }
         };
+
         fetchGitHubActivity();
     }, []);
 
-    const getColorClass = (level: number): string => {
-        const colors = [
-            "bg-gray-800", // 0 contributions
-            "bg-green-900", // 1-2 contributions
-            "bg-green-700", // 3-4 contributions
-            "bg-green-500", // 5-6 contributions
-            "bg-green-400", // 7+ contributions
-        ];
-        return colors[level] || colors[0];
+    // fixed palette (won't change with theme)
+    const palette = [
+        "#cbd5e1", // level 0 (none) — visible on both themes
+        "#16a34a", // level 1
+        "#059669", // level 2
+        "#10b981", // level 3
+        "#34d399", // level 4
+    ];
+
+    const getColorStyle = (level: number) => {
+        const color = palette[level] ?? palette[0];
+        return { backgroundColor: color };
     };
 
-    // Group data by weeks
-    const weeks = [];
+    // Group data by weeks (7 days per column)
+    const weeks: Contribution[][] = [];
     for (let i = 0; i < activityData.length; i += 7) {
         weeks.push(activityData.slice(i, i + 7));
     }
@@ -79,18 +74,16 @@ export const GitHubActivityChart = () => {
     return (
         <div className="space-y-3">
             <div className="flex items-center justify-between">
-                <h4 className="text-xs font-medium text-white">
-                    GitHub Activity
-                </h4>
-                <div className="flex items-center space-x-1 text-xs text-gray-400">
+                <h4 className="text-xs font-medium text-foreground">GitHub Activity</h4>
+                <div className="flex items-center space-x-2 text-xs text-muted">
                     <span>Less</span>
-                    <div className="flex space-x-0.5">
+                    <div className="flex items-center space-x-0.5">
                         {[0, 1, 2, 3, 4].map((level) => (
                             <div
                                 key={level}
-                                className={`w-2 h-2 rounded-sm ${getColorClass(
-                                    level
-                                )}`}
+                                style={getColorStyle(level)}
+                                className="w-2 h-2 rounded-sm"
+                                aria-hidden
                             />
                         ))}
                     </div>
@@ -99,24 +92,18 @@ export const GitHubActivityChart = () => {
             </div>
 
             {isLoading ? (
-                <div className="text-xs text-gray-400">
-                    Loading contributions...
-                </div>
+                <div className="text-xs text-muted">Loading contributions...</div>
             ) : error ? (
-                <div className="text-xs text-red-400">{error}</div>
+                <div className="text-xs text-destructive">{error}</div>
             ) : (
                 <div className="flex space-x-0.5 overflow-x-auto">
-                    {weeks.map((week, weekIndex) => (
-                        <div
-                            key={weekIndex}
-                            className="flex flex-col space-y-0.5"
-                        >
+                    {weeks.map((week, wi) => (
+                        <div key={wi} className="flex flex-col space-y-0.5">
                             {week.map((day) => (
                                 <div
                                     key={day.date}
-                                    className={`w-2 h-2 rounded-sm ${getColorClass(
-                                        day.level
-                                    )} hover:ring-1 hover:ring-white/20 transition-all cursor-pointer`}
+                                    style={getColorStyle(day.level)}
+                                    className="w-2 h-2 rounded-sm hover:scale-110 transition-transform cursor-pointer"
                                     title={`${day.count} contributions on ${day.date}`}
                                 />
                             ))}
@@ -125,9 +112,8 @@ export const GitHubActivityChart = () => {
                 </div>
             )}
 
-            <div className="text-xs text-gray-400">
-                {activityData.reduce((sum, day) => sum + day.count, 0)}{" "}
-                contributions in the last year
+            <div className="text-xs text-muted">
+                {activityData.reduce((sum, d) => sum + d.count, 0)} contributions in the last year
             </div>
         </div>
     );
