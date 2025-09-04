@@ -1,7 +1,7 @@
 import React, { JSX } from "react";
 import { MapPin, Dot, GithubIcon, File } from "lucide-react";
 import type { Experience } from "../types";
-import { experience } from "@/lib/data";
+import { experience, personal } from "@/lib/data";
 import { Module } from "./shared";
 import { GitHubActivityChart } from "@/components/githubActivityChart";
 import Link from "next/link";
@@ -50,19 +50,17 @@ const AboutPage: React.FC = () => {
                 <Module className="col-span-6 md:col-span-4">
                     <div className="flex items-start space-x-3">
                         <div className="w-10 h-10 bg-gradient-to-br from-primary/80 to-primary rounded-lg flex items-center justify-center text-primary-foreground text-sm font-bold">
-                            AJ
+                            {personal.logo}
                         </div>
                         <div className="flex-1">
                             <h1 className="text-lg font-semibold text-foreground mb-1">
-                                Alex Johnson
+                                {personal.name}
                             </h1>
                             <p className="text-xs text-muted-foreground mb-3">
-                                Full Stack Developer
+                                {personal.role}
                             </p>
                             <p className="text-xs text-muted leading-relaxed">
-                                Crafting digital experiences with clean code and
-                                thoughtful design. Passionate about building
-                                scalable web applications.
+                                {personal.summary}
                             </p>
                         </div>
                     </div>
@@ -74,8 +72,8 @@ const AboutPage: React.FC = () => {
                         <div className="flex items-center space-x-2">
                             <MapPin className="w-3 h-3 text-muted-foreground" />
                             <div>
-                                <div className="text-xs text-foreground">San Francisco</div>
-                                <div className="text-xs text-muted">Remote friendly</div>
+                                <div className="text-xs text-foreground">{personal.location}</div>
+                                <div className="text-xs text-muted">{personal.location_preference}</div>
                             </div>
                         </div>
                     </Module>
@@ -83,8 +81,8 @@ const AboutPage: React.FC = () => {
                         <div className="flex items-center space-x-2">
                             <MapPin className="w-3 h-3 text-muted-foreground" />
                             <div>
-                                <div className="text-xs text-foreground">PST Timezone</div>
-                                <div className="text-xs text-muted">UTC-8</div>
+                                <div className="text-xs text-foreground">{personal.timezone} Timezone</div>
+                                <div className="text-xs text-muted">{personal.timezone_offset}</div>
                             </div>
                         </div>
                     </Module>
@@ -95,7 +93,7 @@ const AboutPage: React.FC = () => {
                     <Module className="col-span-3 md:col-span-2 w-full flex flex-1 items-center justify-center py-2" size="small">
                         <div className="flex items-center justify-evenly w-full px-4">
                             <a
-                                href="https://github.com/username"
+                                href={`https://github.com/${personal.github_username}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Visit my GitHub profile"

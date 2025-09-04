@@ -1,28 +1,5 @@
-import { BlogPost, Experience, Project, TechStack } from "@/app/types";
-
-export const projects: Project[] = [
-    {
-        title: "E-commerce Platform",
-        description: "Modern shopping experience with seamless checkout",
-        tech: ["React", "Node.js", "PostgreSQL"],
-        type: "Web App",
-        year: "2024",
-    },
-    {
-        title: "Analytics Dashboard",
-        description: "Real-time data visualization for business insights",
-        tech: ["Next.js", "TypeScript", "Prisma"],
-        type: "SaaS",
-        year: "2024",
-    },
-    {
-        title: "Task Management App",
-        description: "Collaborative workspace for remote teams",
-        tech: ["Vue.js", "Express", "MongoDB"],
-        type: "Web App",
-        year: "2023",
-    },
-];
+import { BlogPost, ContactInfo, Experience, PersonalInfo, TechStack } from "@/app/types";
+import { Github, Linkedin, Mail, X } from "lucide-react";
 
 export const blogs: BlogPost[] = [
     {
@@ -53,27 +30,61 @@ export const blogs: BlogPost[] = [
 ];
 
 export const experience: Experience[] = [
-    {
-        role: "Senior Full Stack Developer",
-        company: "TechCorp",
-        period: "2022 - Present",
-        location: "San Francisco, CA",
-    },
-    {
+     {
         role: "Full Stack Developer",
-        company: "StartupXYZ",
-        period: "2020 - 2022",
+        company: "Maydit",
+        period: "2025 June - Present",
         location: "Remote",
     },
     {
-        role: "Frontend Developer",
-        company: "AgencyABC",
-        period: "2019 - 2020",
-        location: "San Francisco, CA",
+        role: "Full Stack Developer - Intern",
+        company: "ABCDE Technologies",
+        period: "2024 Dec - 2025 Mar",
+        location: "Remote",
     },
+   
 ];
 
 export const techStack: TechStack = {
-    "Currently working": ["JavaScript", "TypeScript", "Python", "Go"],
-    "Experience with": ["React", "Next.js", "Vue.js", "Tailwind CSS"],
+    "Currently working on": ["TypeScript", "Python", "React Native", "Electron JS"],
+    "Experience with": ["React", "Next.js", "Gin", "GORM", "Tailwind CSS", "Git", "Javascript", "Prisma", "Supaebase", "Convex", "Express", "WebRTC", "Websockets", "Java", "Mysql", "HTML & CSS", "Docker"],
 };
+
+
+export const personal: PersonalInfo = {
+    name: "Tholkappiar M",
+    logo: "T",
+    role: "Full Stack Developer",
+    summary: "Crafting digital experiences with clean code and thoughtful design. Passionate about building scalable web applications.",
+    location: "India, TamilNadu",
+    location_preference: "Remote friendly",
+    timezone: "IST",
+    timezone_offset: "UTC +5:30",
+    github_username: "tholkappiar"
+}
+
+export const contactMethods: ContactInfo[] = [
+    {
+    icon: Mail,
+    label: "email",
+    value: "tholkappiar2003@gmail.com",
+    }, {
+        icon: Github,
+        label: "github",
+        value: "tholkappiar"
+    },
+    {
+        icon: X,
+        label: "x",
+        value: "Tholkappiar2003"
+    },
+    {
+        icon: Linkedin,
+        label: "linkedin",
+        value: "tholkappiar"
+    }
+]
+
+export const availableServices: string[] = ["Full-time roles", "Remote work", "Contract work"];
+
+export const responseTime: string = "24h"

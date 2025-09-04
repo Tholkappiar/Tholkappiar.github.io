@@ -30,6 +30,18 @@ export interface ContactInfo {
     value: string;
 }
 
+export interface PersonalInfo {
+    name: string;
+    logo: string
+    role: string
+    summary: string
+    location: string
+    location_preference: string
+    timezone: string
+    timezone_offset: string
+    github_username: string
+}
+
 // Component Props Types
 export interface ModuleProps {
     children: React.ReactNode;

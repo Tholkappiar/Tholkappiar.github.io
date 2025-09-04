@@ -1,22 +1,10 @@
 import React, { JSX } from "react";
-import { Mail, Github, Linkedin, Twitter, ExternalLink, LucideIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Module } from "./shared";
-
-interface ContactInfo {
-    icon: LucideIcon;
-    label: string;
-    value: string;
-}
+import { ContactInfo } from "../types";
+import { availableServices, contactMethods, personal, responseTime } from "@/lib/data";
 
 const ContactPage: React.FC = () => {
-    const contactMethods: ContactInfo[] = [
-        { icon: Mail, label: "Email", value: "alex@example.com" },
-        { icon: Github, label: "GitHub", value: "alexjohnson" },
-        { icon: Linkedin, label: "LinkedIn", value: "alexjohnson" },
-        { icon: Twitter, label: "Twitter", value: "@alexjohnson" },
-    ];
-
-    const availableServices: string[] = ["Full-time roles", "Remote work", "Contract work"];
 
     const renderContactMethod = (contact: ContactInfo, index: number): JSX.Element => (
         <div
@@ -96,7 +84,7 @@ const ContactPage: React.FC = () => {
                             <div className="space-y-1.5">{availableServices.map(renderServiceItem)}</div>
 
                             <div className="pt-3 border-t border-border">
-                                <div className="text-xs text-muted">Response time: 24h</div>
+                                <div className="text-xs text-muted">Response time: {responseTime}</div>
                             </div>
                         </div>
                     </Module>
@@ -105,11 +93,11 @@ const ContactPage: React.FC = () => {
 
             <Module className="text-center" hover={false}>
                 <div className="flex items-center justify-center space-x-4 text-xs text-muted">
-                    <span>San Francisco, CA</span>
+                    <span>{personal.location}</span>
                     <span>•</span>
-                    <span>Remote worldwide</span>
+                    <span>{personal.location_preference}e</span>
                     <span>•</span>
-                    <span>PST (UTC-8)</span>
+                    <span>{personal.timezone} ({personal.timezone_offset})</span>
                 </div>
             </Module>
         </div>
