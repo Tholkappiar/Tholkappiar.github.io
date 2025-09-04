@@ -2,7 +2,7 @@ import React, { JSX } from "react";
 import { MapPin, Dot, GithubIcon, File } from "lucide-react";
 import type { Experience } from "../types";
 import { experience, personal } from "@/lib/data";
-import { Module } from "./shared";
+import { getDetails, Module } from "./shared";
 import { GitHubActivityChart } from "@/components/githubActivityChart";
 import Link from "next/link";
 
@@ -93,7 +93,7 @@ const AboutPage: React.FC = () => {
                     <Module className="col-span-3 md:col-span-2 w-full flex flex-1 items-center justify-center py-2" size="small">
                         <div className="flex items-center justify-evenly w-full px-4">
                             <a
-                                href={`https://github.com/${personal.github_username}`}
+                                href={`https://github.com/${getDetails('github')}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Visit my GitHub profile"

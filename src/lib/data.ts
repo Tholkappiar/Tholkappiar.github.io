@@ -60,7 +60,6 @@ export const personal: PersonalInfo = {
     location_preference: "Remote friendly",
     timezone: "IST",
     timezone_offset: "UTC +5:30",
-    github_username: "tholkappiar"
 }
 
 export const contactMethods: ContactInfo[] = [
@@ -68,7 +67,8 @@ export const contactMethods: ContactInfo[] = [
     icon: Mail,
     label: "email",
     value: "tholkappiar2003@gmail.com",
-    }, {
+    },
+    {
         icon: Github,
         label: "github",
         value: "tholkappiar"

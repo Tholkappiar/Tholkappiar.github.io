@@ -1,10 +1,63 @@
-import React, { JSX } from "react";
+'use client'
+
+import React, { JSX, useState } from "react";
 import { ExternalLink } from "lucide-react";
-import { Module } from "./shared";
-import { ContactInfo } from "../types";
+import { getDetails, Module } from "./shared";
+import { ContactInfo, FormDetails } from "../types";
 import { availableServices, contactMethods, personal, responseTime } from "@/lib/data";
 
 const ContactPage: React.FC = () => {
+    const [formDetails, setFormDetails] = useState<FormDetails>({
+        subject: "",
+        email: "",
+        name: "",
+        message: ""
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+        const { name, value } = e.target;
+        setFormDetails(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    }
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            const formData = new FormData();
+            Object.entries(formDetails).forEach(([key, value]) => {
+                formData.append(key, value);
+            });
+
+            const response = await fetch(`https://formsubmit.co/ajax/${getDetails('email')}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formDetails)
+            });
+
+            if (response.ok) {
+                setIsSubmitted(true);
+                setFormDetails({
+                    subject: "",
+                    email: "",
+                    name: "",
+                    message: ""
+                });
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+        } finally {
+            setIsSubmitting(false);
+        }
+    }
 
     const renderContactMethod = (contact: ContactInfo, index: number): JSX.Element => (
         <div
@@ -37,15 +90,24 @@ const ContactPage: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="md:col-span-2 bg-card backdrop-blur-sm border border-border rounded-xl p-4">
                     <h3 className="text-lg text-foreground ml-1 mt-2 mb-2">Send a Message</h3>
-                    <form action="https://formsubmit.co/alex@example.com" method="POST" className="space-y-4 my-8">
-                        <input type="hidden" name="_subject" value="New Portfolio Contact" />
-                        <input type="hidden" name="_captcha" value="false" />
-                        <input type="hidden" name="_next" value="https://your-site.com/thanks" />
+                    <form onSubmit={handleSubmit} className="space-y-4 my-2">
+                        <input type="hidden" name="subject" value={formDetails.subject} />
                         <div className="space-y-5">
                             <input
                                 type="text"
                                 name="name"
                                 placeholder="Your Name"
+                                value={formDetails.name}
+                                onChange={handleChange}
+                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="subject"
+                                placeholder="subject"
+                                value={formDetails.subject}
+                                onChange={handleChange}
                                 className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
                                 required
                             />
@@ -53,6 +115,8 @@ const ContactPage: React.FC = () => {
                                 type="email"
                                 name="email"
                                 placeholder="Your Email"
+                                value={formDetails.email}
+                                onChange={handleChange}
                                 className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
                                 required
                             />
@@ -60,15 +124,18 @@ const ContactPage: React.FC = () => {
                                 name="message"
                                 placeholder="Your Message"
                                 rows={4}
+                                value={formDetails.message}
+                                onChange={handleChange}
                                 className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
-                            className="mt-8 w-full bg-primary/20 text-primary-foreground border border-border rounded-lg p-4 text-xs font-medium hover:bg-primary/30 transition-colors"
+                            disabled={isSubmitting || isSubmitted}
+                            className="w-full bg-primary/20 text-primary-foreground border border-border rounded-lg p-4 text-xs font-medium hover:bg-primary transition-colors disabled:hover:bg-primary/20"
                         >
-                            Send Message
+                            {isSubmitted ? "Thank you!" : (isSubmitting ? "Sending..." : "Send Message")}
                         </button>
                     </form>
                 </div>

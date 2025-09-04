@@ -39,7 +39,13 @@ export interface PersonalInfo {
     location_preference: string
     timezone: string
     timezone_offset: string
-    github_username: string
+}
+
+export interface FormDetails {
+    subject: string
+    email: string
+    name: string
+    message: string
 }
 
 // Component Props Types

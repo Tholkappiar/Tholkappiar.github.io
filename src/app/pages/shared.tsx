@@ -6,6 +6,7 @@ import type {
     ModuleSize,
     TagVariant,
 } from "../types";
+import { contactMethods } from "@/lib/data";
 
 // Reusable Module component
 export const Module: React.FC<ModuleProps> = ({
@@ -59,3 +60,8 @@ export const TabButton: React.FC<TabButtonProps> = ({ active, onClick, children 
         {children}
     </button>
 );
+
+
+export function getDetails(property: string): string | undefined {
+    return contactMethods.find((value) => value.label === property)?.value
+}
