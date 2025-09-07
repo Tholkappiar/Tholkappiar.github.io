@@ -27,11 +27,13 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col flex-1 bg-background text-foreground transition-colors duration-500`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-background text-foreground transition-colors duration-1000`}
             >
-                <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
-                    {children}
-                </ThemeProvider>
+                <div className="flex-1">
+                    <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
+                        {children}
+                    </ThemeProvider>
+                </div>
                 <Footer />
             </body>
         </html>

@@ -57,12 +57,12 @@ const Portfolio: React.FC = () => {
                     </div>
 
                     {/* Modern Navigation */}
-                    <nav className="flex space-x-1 p-1 bg-card backdrop-blur-sm rounded-xl border border-border">
+                    <nav className="flex space-x-1 p-1 bg-card backdrop-blur-sm rounded-xl border border-border transition-colors duration-1000">
                         {navigation.map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => handleSectionChange(item.id)}
-                                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-300 ${activeSection === item.id
+                                className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-1000 ${activeSection === item.id
                                     ? "bg-primary text-white shadow-lg"
                                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                                     }`}

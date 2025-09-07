@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import React, { ButtonHTMLAttributes } from "react";
 
 const buttonVariants = cva(
-  "font-head transition-all outline-hidden cursor-pointer duration-200 font-medium flex items-center",
+  "font-head transition-all outline-hidden cursor-pointer duration-1000 font-medium flex items-center",
   {
     variants: {
       variant: {
@@ -31,7 +31,7 @@ const buttonVariants = cva(
 
 export interface IButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+  VariantProps<typeof buttonVariants> { }
 
 export const Button = React.forwardRef<HTMLButtonElement, IButtonProps>(
   (

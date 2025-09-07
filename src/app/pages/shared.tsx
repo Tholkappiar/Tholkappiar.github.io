@@ -24,7 +24,7 @@ export const Module: React.FC<ModuleProps> = ({
     return (
         <div
             className={`bg-card backdrop-blur-sm border border-border rounded-xl ${sizes[size]} ${hover ? "hover:border-border/70 hover:bg-card/95" : ""
-                } transition-all duration-300 ${className}`}
+                } transition-all duration-1000 ${className}`}
         >
             {children}
         </div>
@@ -52,7 +52,7 @@ export const Tag: React.FC<TagProps> = ({ children, variant = "default" }) => {
 export const TabButton: React.FC<TabButtonProps> = ({ active, onClick, children }) => (
     <button
         onClick={onClick}
-        className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200 ${active
+        className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-1000 ${active
             ? "bg-card text-foreground border border-border"
             : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
             }`}

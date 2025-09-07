@@ -88,7 +88,7 @@ const ContactPage: React.FC = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <div className="md:col-span-2 bg-card backdrop-blur-sm border border-border rounded-xl p-4">
+                <div className="md:col-span-2 bg-card backdrop-blur-sm border border-border rounded-xl p-4 transition-colors duration-1000">
                     <h3 className="text-lg text-foreground ml-1 mt-2 mb-2">Send a Message</h3>
                     <form onSubmit={handleSubmit} className="space-y-4 my-2">
                         <input type="hidden" name="subject" value={formDetails.subject} />
@@ -99,7 +99,7 @@ const ContactPage: React.FC = () => {
                                 placeholder="Your Name"
                                 value={formDetails.name}
                                 onChange={handleChange}
-                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
+                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none transition-colors duration-1000"
                                 required
                             />
                             <input
@@ -108,7 +108,7 @@ const ContactPage: React.FC = () => {
                                 placeholder="subject"
                                 value={formDetails.subject}
                                 onChange={handleChange}
-                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
+                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none transition-colors duration-1000"
                                 required
                             />
                             <input
@@ -117,7 +117,7 @@ const ContactPage: React.FC = () => {
                                 placeholder="Your Email"
                                 value={formDetails.email}
                                 onChange={handleChange}
-                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
+                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none transition-colors duration-1000"
                                 required
                             />
                             <textarea
@@ -126,14 +126,14 @@ const ContactPage: React.FC = () => {
                                 rows={4}
                                 value={formDetails.message}
                                 onChange={handleChange}
-                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none"
+                                className="w-full bg-card/70 border border-border rounded-lg p-4 text-xs placeholder:text-muted/70 outline-none transition-colors duration-1000"
                                 required
                             />
                         </div>
                         <button
                             type="submit"
                             disabled={isSubmitting || isSubmitted}
-                            className="w-full bg-primary/20 text-primary-foreground border border-border rounded-lg p-4 text-xs font-medium hover:bg-primary transition-colors disabled:hover:bg-primary/20"
+                            className="w-full bg-primary/20 text-primary-foreground border-none rounded-lg p-4 text-xs font-medium hover:bg-primary transition-colors disabled:hover:bg-primary/20"
                         >
                             {isSubmitted ? "Thank you!" : (isSubmitting ? "Sending..." : "Send Message")}
                         </button>
@@ -142,8 +142,8 @@ const ContactPage: React.FC = () => {
                 <div className="grid md:grid-rows-2 gap-4">
                     <Module>{contactMethods.map(renderContactMethod)}</Module>
                     <Module>
-                        <div className="space-y-3">
-                            <div className="p-3 bg-accent/10 rounded-lg border border-border">
+                        <div className="space-y-3 ">
+                            <div className="p-3 bg-accent/10 rounded-lg border-none">
                                 <div className="text-xs font-medium mb-1">Currently available</div>
                                 <div className="text-xs text-muted">Open to new opportunities</div>
                             </div>

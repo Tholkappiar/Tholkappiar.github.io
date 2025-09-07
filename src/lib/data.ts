@@ -19,7 +19,7 @@ export const experience: Experience[] = [
 
 export const techStack: TechStack = {
     "Currently working on": ["TypeScript", "Python", "React Native", "Electron JS"],
-    "Experience with": ["React", "Next.js", "Gin", "GORM", "Tailwind CSS", "Git", "Javascript", "TypeScript", "React Native", "Electron",  "Prisma", "Supaebase", "Convex", "Express", "WebRTC", "Websockets", "Java", "Mysql", "HTML & CSS", "Docker"],
+    "Experience with": ["React", "Next.js", "Gin", "GORM", "Tailwind CSS", "Git", "Javascript", "TypeScript", "React Native", "Electron",  "Prisma", "Supabase", "Convex", "Express", "WebRTC", "Websockets", "Java", "MySql", "HTML & CSS", "Docker"],
 };
 
 
@@ -27,7 +27,7 @@ export const personal: PersonalInfo = {
     name: "Tholkappiar M",
     logo: "T",
     role: "Full Stack Developer",
-    summary: "Crafting digital experiences with clean code and thoughtful design. Passionate about building scalable web applications.",
+    summary: "Crafting digital experiences with clean code and thoughtful design. Passionate about building scalable applications.",
     location: "India, TamilNadu",
     location_preference: "Remote friendly",
     timezone: "IST",
