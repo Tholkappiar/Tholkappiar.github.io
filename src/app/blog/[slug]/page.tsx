@@ -1,8 +1,18 @@
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { ThemeToggleButton } from "@/components/ToggleButton";
+import { API } from "@/lib/utils";
 
-export default async function RemoteMdxPage() {
-  const res = await fetch("http://localhost:3000/api/github/getBlog", {
+type Props = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function BlogPage({ params }: Props) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
+
+  const res = await fetch(`${API.backend.base_path}${API.backend.getBlog(slug)}`, {
     cache: "no-store",
   });
 
@@ -17,7 +27,7 @@ export default async function RemoteMdxPage() {
       <div className="flex justify-end">
         <ThemeToggleButton />
       </div>
-      <h1 className="text-foreground">{data?.title ?? "Untitled"}</h1>
+      <h1 className="text-foreground">{data?.title ?? ""}</h1>
       <p className="text-xs text-muted-foreground">{data?.date ?? ""}</p>
       <p className="italic text-muted-foreground">{data?.description ?? ""}</p>
 

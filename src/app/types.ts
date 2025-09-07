@@ -67,8 +67,15 @@ export type SectionType = "about" | "blogs" | "stack" | "contact";
 
 // Github repo link
 export type GithubRepo = {
-    github_repo: string
-    blogs_path: string
+    github: {
+        github_repo: string
+        blogs_path: string
+    },
+    backend: {
+       base_path: string
+       getBlogs: string
+       getBlog: (fileName: string) => string
+    }
 }
 
 export interface BlogsListType {
@@ -90,6 +97,7 @@ export interface BlogsListType {
 }
 
 export type BlogPostType = {
-    name: string
+    post_name: string
+    file_name: string
     date: string
 }

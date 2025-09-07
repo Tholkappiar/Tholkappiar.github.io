@@ -2,7 +2,7 @@ import { API } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_REPO = API.github_repo + API.blogs_path 
+const GITHUB_REPO = API.github.github_repo + API.github.blogs_path
 
 export async function GET() {
   try {
@@ -33,7 +33,8 @@ export async function GET() {
         });
 
         return {
-          name: title.trim(),
+          file_name: file.name,
+          post_name: title.trim(),
           date
         };
       });
