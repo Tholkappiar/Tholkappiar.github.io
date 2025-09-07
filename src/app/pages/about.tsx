@@ -4,9 +4,12 @@ import type { Experience } from "../types";
 import { experience, personal } from "@/lib/data";
 import { getDetails, Module } from "./shared";
 import { GitHubActivityChart } from "@/components/githubActivityChart";
-import Link from "next/link";
 
-const AboutPage: React.FC = () => {
+interface AboutPageProps {
+    changeSection: (arg: string) => void
+}
+
+const AboutPage: React.FC<AboutPageProps> = ({ changeSection }) => {
     const renderExperienceItem = (
         exp: Experience,
         index: number
@@ -118,19 +121,21 @@ const AboutPage: React.FC = () => {
                         </div>
                     </Module>
 
-                    <Module
-                        size="small"
-                        className="col-span-6 md:col-span-2 w-full flex flex-1 items-center justify-center"
-                        hover={false}
-                    >
-                        <Link href="/contact" className="flex items-center space-x-4">
-                            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-                            <div className="flex flex-col gap-1">
-                                <div className="text-xs text-foreground">Available for work</div>
-                                <div className="text-xs text-primary hover:text-primary-hover transition-colors">Connect with me</div>
+                    <button className="w-full cursor-pointer" onClick={() => changeSection('contact')}>
+                        <Module
+                            size="small"
+                            className="col-span-6 md:col-span-2 w-full flex flex-1 items-center justify-center"
+                            hover={false}
+                        >
+                            <div className="flex items-center space-x-4">
+                                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                                <div className="flex flex-col gap-1">
+                                    <div className="text-xs text-foreground">Available for work</div>
+                                    <div className="text-xs text-primary hover:text-primary-hover transition-colors">Connect with me</div>
+                                </div>
                             </div>
-                        </Link>
-                    </Module>
+                        </Module>
+                    </button>
                 </div>
 
                 <Module className="col-span-6 md:col-span-4">

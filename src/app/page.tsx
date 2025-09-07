@@ -29,7 +29,7 @@ const Portfolio: React.FC = () => {
     const renderContent = (): JSX.Element => {
         switch (activeSection) {
             case "about":
-                return <AboutPage />;
+                return <AboutPage changeSection={handleSectionChange} />;
             case "blogs":
                 return <BlogsPage />;
             case "stack":
@@ -37,7 +37,7 @@ const Portfolio: React.FC = () => {
             case "contact":
                 return <ContactPage />;
             default:
-                return <AboutPage />;
+                return <AboutPage changeSection={handleSectionChange} />;
         }
     };
 

@@ -11,13 +11,13 @@ export default async function RemoteMdxPage() {
   const { content, data } = matter(file);
 
   return (
-    <div className="prose mx-auto my-10 prose-a:text-primary prose-blockquote:text-muted">
+    <div className="prose dark:prose-invert mx-auto my-10 prose-a:text-primary prose-blockquote:text-muted-foreground">
       <div className="flex justify-end">
         <ThemeToggleButton />
       </div>
       <h1 className="text-foreground">{data.title}</h1>
       <p className="text-xs text-muted-foreground">{data.date}</p>
-      <p className="italic text-muted">{data.description}</p>
+      <p className="italic text-muted-foreground">{data.description}</p>
 
       {/* render markdown content */}
       <MDXRemote source={content} options={{ mdxOptions: { format: "md" } }} />

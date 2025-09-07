@@ -47,7 +47,7 @@ export const experience: Experience[] = [
 
 export const techStack: TechStack = {
     "Currently working on": ["TypeScript", "Python", "React Native", "Electron JS"],
-    "Experience with": ["React", "Next.js", "Gin", "GORM", "Tailwind CSS", "Git", "Javascript", "Prisma", "Supaebase", "Convex", "Express", "WebRTC", "Websockets", "Java", "Mysql", "HTML & CSS", "Docker"],
+    "Experience with": ["React", "Next.js", "Gin", "GORM", "Tailwind CSS", "Git", "Javascript", "TypeScript", "React Native", "Electron",  "Prisma", "Supaebase", "Convex", "Express", "WebRTC", "Websockets", "Java", "Mysql", "HTML & CSS", "Docker"],
 };
 
 

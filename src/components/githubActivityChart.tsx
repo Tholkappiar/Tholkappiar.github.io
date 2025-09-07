@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getDetails } from "@/app/pages/shared";
 
 interface Contribution {
     date: string;
@@ -27,7 +28,7 @@ export const GitHubActivityChart = () => {
             setIsLoading(true);
             try {
                 const response = await axios.get<GitHubContributionResponse>(
-                    `https://github-contributions-api.jogruber.de/v4/hkirat?y=last`,
+                    `https://github-contributions-api.jogruber.de/v4/${getDetails('github')}?y=last`,
                     { headers: { Accept: "application/json" } }
                 );
 
