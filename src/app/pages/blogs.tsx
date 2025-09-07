@@ -1,36 +1,40 @@
-'use client'
+'use client';
 
-import React, { JSX, useEffect } from "react";
-import type { BlogPost } from "../types";
-import { blogs } from "@/lib/data";
-import { API } from "@/lib/utils";
+import React, { JSX, useEffect, useState } from "react";
+import type { BlogPostType } from "../types";
 
 const BlogsPage: React.FC = () => {
-
+    const [blogs, setBlogs] = useState<BlogPostType[]>([]);
 
     useEffect(() => {
         async function getBlogs() {
-            const response = await (await fetch(API.github_repo + "/Tholkappiar.github.io/contents/")).json()
+            try {
+                const response = await fetch("/api/github/getBlogs");
+                if (!response.ok) throw new Error("Failed to fetch blogs");
 
-            console.log(response)
+                const result: BlogPostType[] = await response.json();
+                setBlogs(result);
+            } catch (error) {
+                console.error("Error loading blogs:", error);
+            }
         }
-        getBlogs()
-    }, [])
 
-    const renderBlogCard = (blog: BlogPost, index: number): JSX.Element => (
+        getBlogs();
+    }, []);
+
+    const renderBlogCard = ({ name, date }: BlogPostType, index: number): JSX.Element => (
         <div
             key={index}
             className="group cursor-pointer h-full flex gap-8 items-center select-none"
         >
-            <div className="text-xs text-muted-foreground w-20">{blog.date}</div>
-            <h3
-                className="relative text-sm font-medium text-muted transition-colors
-             after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
-             after:h-[2px] after:w-full after:bg-current after:scale-x-0
-             after:origin-left after:transition-transform after:duration-300 after:ease-linear
-             group-hover:after:scale-x-100 group-hover:text-foreground"
+            <div className="text-xs text-muted-foreground w-20">{date}</div>
+            <h3 className="relative text-sm font-medium text-muted transition-colors
+        after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
+        after:h-[2px] after:w-full after:bg-current after:scale-x-0
+        after:origin-left after:transition-transform after:duration-300 after:ease-linear
+        group-hover:after:scale-x-100 group-hover:text-foreground"
             >
-                {blog.title}
+                {name}
             </h3>
         </div>
     );

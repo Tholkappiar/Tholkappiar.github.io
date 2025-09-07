@@ -6,13 +6,6 @@ export interface Project {
     year: string;
 }
 
-export interface BlogPost {
-    title: string;
-    description: string;
-    date: string;
-    readTime: string;
-}
-
 export interface Experience {
     role: string;
     company: string;
@@ -75,4 +68,28 @@ export type SectionType = "about" | "blogs" | "stack" | "contact";
 // Github repo link
 export type GithubRepo = {
     github_repo: string
+    blogs_path: string
+}
+
+export interface BlogsListType {
+    download_url: string
+    git_url: string
+    html_url: string
+    name: string
+    path: string
+    sha: string
+    size: number
+    type: string
+    url: string
+    _links: {
+        self: string,
+        sha: string,
+        size: number,
+        url: string
+    }
+}
+
+export type BlogPostType = {
+    name: string
+    date: string
 }

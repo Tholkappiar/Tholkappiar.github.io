@@ -1,33 +1,5 @@
-import { BlogPost, ContactInfo, Experience, PersonalInfo, TechStack } from "@/app/types";
+import { ContactInfo, Experience, PersonalInfo, TechStack } from "@/app/types";
 import { Github, Linkedin, Mail, X } from "lucide-react";
-
-export const blogs: BlogPost[] = [
-    {
-        title: "Building Scalable React Apps",
-        description:
-            "Best practices for component architecture and state management",
-        date: "Jan 15, 2024",
-        readTime: "5 min",
-    },
-    {
-        title: "TypeScript Tips & Tricks",
-        description: "Advanced patterns for better type safety and DX",
-        date: "Jan 10, 2024",
-        readTime: "4 min",
-    },
-    {
-        title: "Modern CSS Techniques",
-        description: "Container queries, CSS Grid, and new layout methods",
-        date: "Jan 5, 2024",
-        readTime: "6 min",
-    },
-    {
-        title: "API Design Patterns",
-        description: "RESTful design principles and GraphQL best practices",
-        date: "Dec 28, 2023",
-        readTime: "7 min",
-    },
-];
 
 export const experience: Experience[] = [
      {

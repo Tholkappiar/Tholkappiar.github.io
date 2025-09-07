@@ -7,5 +7,6 @@ export function cn(...classes: ClassNameValue[]) {
 }
 
 export const API: GithubRepo = {
-  github_repo: "https://api.github.com/repos/tholkappiar"
+  github_repo: "https://api.github.com/repos/tholkappiar",
+  blogs_path: "/Tholkappiar.github.io/contents/src/blogs/"
 }
