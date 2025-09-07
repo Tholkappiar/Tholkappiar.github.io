@@ -1,8 +1,22 @@
-import React, { JSX } from "react";
+'use client'
+
+import React, { JSX, useEffect } from "react";
 import type { BlogPost } from "../types";
 import { blogs } from "@/lib/data";
+import { API } from "@/lib/utils";
 
 const BlogsPage: React.FC = () => {
+
+
+    useEffect(() => {
+        async function getBlogs() {
+            const response = await (await fetch(API.github_repo + "/Tholkappiar.github.io/contents/")).json()
+
+            console.log(response)
+        }
+        getBlogs()
+    }, [])
+
     const renderBlogCard = (blog: BlogPost, index: number): JSX.Element => (
         <div
             key={index}

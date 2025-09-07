@@ -71,3 +71,8 @@ export interface TabButtonProps {
 export type ModuleSize = "small" | "default" | "large";
 export type TagVariant = "default" | "accent" | "success";
 export type SectionType = "about" | "blogs" | "stack" | "contact";
+
+// Github repo link
+export type GithubRepo = {
+    github_repo: string
+}
