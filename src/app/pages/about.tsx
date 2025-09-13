@@ -4,12 +4,13 @@ import type { Experience } from "../types";
 import { experience, personal } from "@/lib/data";
 import { getDetails, Module } from "./shared";
 import { GitHubActivityChart } from "@/components/githubActivityChart";
+import Link from "next/link";
 
 interface AboutPageProps {
     changeSection: (arg: string) => void
 }
 
-const AboutPage: React.FC<AboutPageProps> = ({ changeSection }) => {
+const AboutPage: React.FC = () => {
     const renderExperienceItem = (
         exp: Experience,
         index: number
@@ -121,7 +122,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ changeSection }) => {
                         </div>
                     </Module>
 
-                    <button className="w-full cursor-pointer" onClick={() => changeSection('contact')}>
+                    <Link href={'?section=contact'} className="w-full cursor-pointer">
                         <Module
                             size="small"
                             className="col-span-6 md:col-span-2 w-full flex flex-1 items-center justify-center"
@@ -135,7 +136,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ changeSection }) => {
                                 </div>
                             </div>
                         </Module>
-                    </button>
+                    </Link>
                 </div>
 
                 <Module className="col-span-6 md:col-span-4">

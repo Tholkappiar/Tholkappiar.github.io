@@ -43,7 +43,7 @@ const BlogsPage: React.FC = () => {
                     className="relative text-sm font-medium text-muted transition-colors
                      after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
                      after:h-[2px] after:w-full after:bg-current after:scale-x-0
-                     after:origin-left after:transition-transform after:duration-1000 after:ease-linear
+                     after:origin-left after:transition-transform after:duration-500 after:ease-linear
                      group-hover:after:scale-x-100 group-hover:text-foreground"
                 >
                     {post_name}
@@ -58,7 +58,7 @@ const BlogsPage: React.FC = () => {
             className="flex gap-8 items-center animate-pulse select-none"
         >
             <div className="w-20 h-4 bg-muted rounded"></div>
-            <div className="h-4 w-40 bg-muted rounded"></div>
+            <div className="h-4 w-full bg-muted rounded"></div>
         </div>
     );
 
