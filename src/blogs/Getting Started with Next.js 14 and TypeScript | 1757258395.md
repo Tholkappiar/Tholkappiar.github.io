@@ -332,3 +332,8 @@ In the next post of this series, we'll dive deeper into:
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
 - [React Server Components](https://react.dev/reference/react/use-server)
 - [Tailwind CSS](https://tailwindcss.com/docs)
+
+
+```js
+console.log('something')
+```
