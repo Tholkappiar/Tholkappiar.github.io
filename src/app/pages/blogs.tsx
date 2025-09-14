@@ -27,10 +27,10 @@ const BlogsPage: React.FC = () => {
     }, []);
 
     const renderBlogCard = (
-        { post_name, date }: BlogPostType,
+        { post_name, file_name, date }: BlogPostType,
         index: number
     ): JSX.Element => {
-        const slug = post_name.trim().replace(/ /g, "-");
+        const slug = file_name.trim().replace(/ /g, "-");
 
         return (
             <Link

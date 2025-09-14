@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Missing slug" }, { status: 400 });
   }
 
-  const fileName = decodeURIComponent(slug) + ".md";
+  const fileName = decodeURIComponent(slug)
 
   const githubApiUrl = `${API.github.github_repo}${API.github.blogs_path}${fileName}`;
 
