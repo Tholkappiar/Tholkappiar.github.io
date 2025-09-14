@@ -32,8 +32,6 @@ export async function GET() {
           year: "numeric"
         });
 
-        title = title.replace(/-/g, ' '); 
-
         return {
           file_name: file.name,
           post_name: title.trim(),

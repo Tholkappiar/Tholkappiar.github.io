@@ -11,7 +11,7 @@ type Props = {
 
 export default async function BlogPage({ params }: Props) {
   const resolvedParams = await params;
-  const slug = resolvedParams.slug;
+  const slug = resolvedParams.slug.replace(/-/g, " ");
 
   const res = await fetch(`${API.backend.base_path}${API.backend.getBlog(slug)}`, {
     cache: "no-store",
