@@ -25,10 +25,12 @@
         "react": "19.1.0",
         "react-dom": "19.1.0",
         "remark-gfm": "^4.0.1",
+        "shiki": "^3.12.2",
         "tailwind-merge": "^3.3.1"
     },
     "devDependencies": {
         "@eslint/eslintrc": "^3",
+        "@shikijs/rehype": "^3.12.2",
         "@tailwindcss/postcss": "^4",
         "@tailwindcss/typography": "^0.5.16",
         "@types/node": "^20",

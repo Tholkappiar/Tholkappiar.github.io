@@ -1,6 +1,7 @@
 import { MDXRemote } from "next-mdx-remote-client/rsc";
 import { ThemeToggleButton } from "@/components/ToggleButton";
 import { API } from "@/lib/utils";
+import rehypeShiki from '@shikijs/rehype'
 
 type Props = {
   params: {
@@ -31,7 +32,24 @@ export default async function BlogPage({ params }: Props) {
       <p className="text-xs text-muted-foreground">{data?.date ?? ""}</p>
       <p className="italic text-muted-foreground">{data?.description ?? ""}</p>
 
-      <MDXRemote source={content} options={{ mdxOptions: { format: "md" } }} />
+      <MDXRemote
+        source={content}
+        options={{
+          mdxOptions: {
+            format: "md",
+            rehypePlugins: [
+              [rehypeShiki, {
+                themes: {
+                  light: 'catppuccin-latte',
+                  dark: 'catppuccin-mocha'
+                },
+                defaultLanguage: 'js',
+                defaultColor: false,
+              }],
+            ]
+          }
+        }}
+      />
     </div>
   );
 }

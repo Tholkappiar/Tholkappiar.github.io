@@ -111,3 +111,47 @@ textarea:-webkit-autofill {
   -webkit-text-fill-color: #E6EEF6 !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+
+/* Code Block line numbers */
+
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
+}
+
+/* Hide dark theme by default, show light theme */
+.shiki span {
+  color: var(--shiki-light) !important;
+}
+
+.shiki {
+  background-color: var(--shiki-light-bg) !important;
+}
+
+/* In dark mode, hide light theme and show dark theme */
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+.dark .shiki {
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+/* Ensure proper prose styling */
+.prose pre {
+  @apply rounded-lg border;
+}
+
+.prose code {
+  @apply text-sm;
+}

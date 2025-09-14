@@ -14,6 +14,6 @@ export const API = {
   backend: {
     base_path: "http://localhost:3000",
     getBlogs: "/api/github/getBlogs",
-    getBlog: (slug: string) => `/api/github/getBlog?slug=${encodeURIComponent(slug)}`
+    getBlog: (slug: string) => `/api/github/getBlog?slug=${slug}`
   }
 };

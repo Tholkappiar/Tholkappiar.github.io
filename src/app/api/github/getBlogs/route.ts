@@ -21,9 +21,9 @@ export async function GET() {
 
     // Expecting GitHub content list
     const blogs = data
-      .filter((file: any) => file.name.endsWith(".md") && file.name.includes("|"))
-      .map((file: any) => {
-        const [title, rawEpochWithExt] = file.name.split("|");
+      .filter((file: {name: string}) => file.name.endsWith(".md") && file.name.includes("|"))
+     .map((file: {name: string}) => {
+        let [title, rawEpochWithExt] = file.name.split("|");
         const epoch = Number(rawEpochWithExt.replace(".md", "").trim());
 
         const date = new Date(epoch * 1000).toLocaleDateString("en-US", {
@@ -32,12 +32,15 @@ export async function GET() {
           year: "numeric"
         });
 
+        title = title.replace(/-/g, ' '); 
+
         return {
           file_name: file.name,
           post_name: title.trim(),
           date
         };
       });
+
 
     return NextResponse.json(blogs);
   } catch (error) {

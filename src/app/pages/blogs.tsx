@@ -35,7 +35,7 @@ const BlogsPage: React.FC = () => {
         return (
             <Link
                 key={index}
-                href={`/blog/${encodeURIComponent(slug)}`}
+                href={`/blog/${(slug)}`}
                 className="group cursor-pointer h-full flex gap-8 items-center select-none"
             >
                 <div className="text-xs text-muted-foreground w-20">{date}</div>

@@ -64,8 +64,87 @@ const config: Config = {
                         'em': {
                             color: 'var(--color-foreground)',
                         },
+                        
+                        // ========== IMAGE CONTROLS ==========
+                        // Main image styling
+                        'img': {
+                            maxWidth: '100%',
+                            maxHeight: '500px',
+                            width: 'auto',
+                            height: 'auto',
+                            margin: '2rem auto',
+                            display: 'block',
+                            borderRadius: '0.75rem', // rounded-xl
+                            objectFit: 'contain',
+                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', // shadow-md
+                            border: '1px solid var(--color-border)',
+                            transition: 'all 0.2s ease-in-out',
+                            
+                            '&:hover': {
+                                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)', // shadow-lg
+                                transform: 'scale(1.01)',
+                            },
+                        },
+                        
+                        // Images inside paragraphs
+                        'p img': {
+                            margin: '1.5rem auto',
+                        },
+                        
+                        // Figure styling for better image captions
+                        'figure': {
+                            margin: '2.5rem auto',
+                            textAlign: 'center',
+                            maxWidth: '100%',
+                            
+                            '& img': {
+                                margin: '0 auto 1rem',
+                                maxWidth: '100%',
+                            },
+                        },
+                        
+                        'figcaption': {
+                            fontSize: '0.875rem',
+                            lineHeight: '1.25rem',
+                            color: 'var(--color-muted-foreground)',
+                            fontStyle: 'italic',
+                            textAlign: 'center',
+                            marginTop: '0.75rem',
+                        },
                     },
                 },
+                
+                // Responsive sizing variants
+                'sm': {
+                    css: {
+                        'img': {
+                            maxHeight: '400px',
+                            margin: '1.5rem auto',
+                        },
+                        'figure': {
+                            margin: '2rem auto',
+                        },
+                    },
+                },
+                
+                'lg': {
+                    css: {
+                        'img': {
+                            maxHeight: '600px',
+                            maxWidth: '800px',
+                        },
+                    },
+                },
+                
+                'xl': {
+                    css: {
+                        'img': {
+                            maxHeight: '700px',
+                            maxWidth: '1000px',
+                        },
+                    },
+                },
+                
                 // Dark mode specific overrides
                 invert: {
                     css: {
@@ -106,6 +185,21 @@ const config: Config = {
                         },
                         'em': {
                             color: 'var(--color-foreground)',
+                        },
+                        
+                        // Dark mode image adjustments
+                        'img': {
+                            border: '1px solid var(--color-border)',
+                            // Slightly different shadow for dark mode
+                            boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3)',
+                            
+                            '&:hover': {
+                                boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4)',
+                            },
+                        },
+                        
+                        'figcaption': {
+                            color: 'var(--color-muted-foreground)',
                         },
                     },
                 },
