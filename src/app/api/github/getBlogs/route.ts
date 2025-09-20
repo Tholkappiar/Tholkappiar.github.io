@@ -23,7 +23,7 @@ export async function GET() {
     const blogs = data
       .filter((file: {name: string}) => file.name.endsWith(".md") && file.name.includes("|"))
      .map((file: {name: string}) => {
-        let [title, rawEpochWithExt] = file.name.split("|");
+        const [title, rawEpochWithExt] = file.name.split("|");
         const epoch = Number(rawEpochWithExt.replace(".md", "").trim());
 
         const date = new Date(epoch * 1000).toLocaleDateString("en-US", {

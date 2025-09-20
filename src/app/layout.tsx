@@ -29,7 +29,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-background text-foreground transition-colors duration-1000`}
             >
-                <div className="flex-1">
+                <div className="flex-1 w-full">
                     <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="theme">
                         {children}
                     </ThemeProvider>

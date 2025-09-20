@@ -4,9 +4,9 @@ import { API } from "@/lib/utils";
 import rehypeShiki from '@shikijs/rehype'
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export default async function BlogPage({ params }: Props) {
@@ -24,32 +24,34 @@ export default async function BlogPage({ params }: Props) {
   const { content, data } = await res.json();
 
   return (
-    <div className="prose dark:prose-invert mx-auto my-10 prose-a:text-primary prose-blockquote:text-muted-foreground">
-      <div className="flex justify-end">
-        <ThemeToggleButton />
-      </div>
-      <h1 className="text-foreground">{data?.title ?? ""}</h1>
-      <p className="text-xs text-muted-foreground">{data?.date ?? ""}</p>
-      <p className="italic text-muted-foreground">{data?.description ?? ""}</p>
+    <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-10">
+      <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert mx-auto prose-a:text-primary prose-blockquote:text-muted-foreground max-w-none">
+        <div className="flex justify-end mb-4">
+          <ThemeToggleButton />
+        </div>
+        <h1 className="text-foreground text-xl sm:text-2xl lg:text-3xl">{data?.title ?? ""}</h1>
+        <p className="text-xs sm:text-sm text-muted-foreground">{data?.date ?? ""}</p>
+        <p className="italic text-sm sm:text-base text-muted-foreground">{data?.description ?? ""}</p>
 
-      <MDXRemote
-        source={content}
-        options={{
-          mdxOptions: {
-            format: "md",
-            rehypePlugins: [
-              [rehypeShiki, {
-                themes: {
-                  light: 'catppuccin-latte',
-                  dark: 'catppuccin-mocha'
-                },
-                defaultLanguage: 'js',
-                defaultColor: false,
-              }],
-            ]
-          }
-        }}
-      />
+        <MDXRemote
+          source={content}
+          options={{
+            mdxOptions: {
+              format: "md",
+              rehypePlugins: [
+                [rehypeShiki, {
+                  themes: {
+                    light: 'catppuccin-latte',
+                    dark: 'catppuccin-mocha'
+                  },
+                  defaultLanguage: 'js',
+                  defaultColor: false,
+                }],
+              ]
+            }
+          }}
+        />
+      </div>
     </div>
   );
 }

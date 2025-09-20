@@ -36,11 +36,11 @@ const BlogsPage: React.FC = () => {
             <Link
                 key={index}
                 href={`/blog/${(slug)}`}
-                className="group cursor-pointer h-full flex gap-8 items-center select-none"
+                className="group cursor-pointer h-full flex flex-col sm:flex-row gap-2 sm:gap-8 items-start sm:items-center select-none"
             >
-                <div className="text-xs text-muted-foreground w-20">{date}</div>
+                <div className="text-xs text-muted-foreground w-full sm:w-20 flex-shrink-0">{date}</div>
                 <h3
-                    className="relative text-sm font-medium text-muted transition-colors
+                    className="relative text-sm font-medium text-muted transition-colors w-full
                      after:content-[''] after:absolute after:left-0 after:bottom-[-2px]
                      after:h-[2px] after:w-full after:bg-current after:scale-x-0
                      after:origin-left after:transition-transform after:duration-500 after:ease-linear
@@ -55,21 +55,21 @@ const BlogsPage: React.FC = () => {
     const renderShimmerCard = (index: number) => (
         <div
             key={index}
-            className="flex gap-8 items-center animate-pulse select-none"
+            className="flex flex-col sm:flex-row gap-2 sm:gap-8 items-start sm:items-center animate-pulse select-none"
         >
-            <div className="w-20 h-4 bg-muted rounded"></div>
+            <div className="w-full sm:w-20 h-4 bg-muted rounded"></div>
             <div className="h-4 w-full bg-muted rounded"></div>
         </div>
     );
 
     return (
-        <div className="w-full space-y-6">
-            <div className="mb-8">
-                <h2 className="text-lg font-semibold text-foreground mb-2">Blog Posts</h2>
+        <div className="w-full space-y-4 sm:space-y-6">
+            <div className="mb-6 sm:mb-8">
+                <h2 className="text-lg sm:text-xl font-semibold text-foreground mb-2">Blog Posts</h2>
                 <p className="text-sm text-muted">Thoughts on development, design, and tech</p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
                 {loading
                     ? Array.from({ length: 5 }).map((_, i) => renderShimmerCard(i))
                     : blogs.map(renderBlogCard)}

@@ -4,7 +4,6 @@ import type {
     TagProps,
     TabButtonProps,
     ModuleSize,
-    TagVariant,
 } from "../types";
 import { contactMethods } from "@/lib/data";
 
@@ -32,16 +31,10 @@ export const Module: React.FC<ModuleProps> = ({
 };
 
 // Reusable Tag component
-export const Tag: React.FC<TagProps> = ({ children, variant = "default" }) => {
-    const variants: Record<TagVariant, string> = {
-        default: "bg-card text-foreground border-border",
-        accent: "bg-primary/15 text-primary-foreground border-border",
-        success: "bg-accent text-foreground border-border",
-    };
-
+export const Tag: React.FC<TagProps> = ({ children }) => {
     return (
         <span
-            className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border bg-[#1f3da8] text-white border-none`}
+            className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium border bg-[#1f3da8] text-white border-none whitespace-nowrap`}
         >
             {children}
         </span>
@@ -52,7 +45,7 @@ export const Tag: React.FC<TagProps> = ({ children, variant = "default" }) => {
 export const TabButton: React.FC<TabButtonProps> = ({ active, onClick, children }) => (
     <button
         onClick={onClick}
-        className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-1000 ${active
+        className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-1000 whitespace-nowrap ${active
             ? "bg-card text-foreground border border-border"
             : "text-muted-foreground hover:text-foreground hover:bg-muted/20"
             }`}

@@ -74,7 +74,7 @@ export const GitHubActivityChart = () => {
 
     return (
         <div className="space-y-3">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between space-y-2 sm:space-y-0">
                 <h4 className="text-xs font-medium text-foreground">GitHub Activity</h4>
                 <div className="flex items-center space-x-2 text-xs text-muted">
                     <span>Less</span>
@@ -97,7 +97,7 @@ export const GitHubActivityChart = () => {
             ) : error ? (
                 <div className="text-xs text-destructive">{error}</div>
             ) : (
-                <div className="flex space-x-0.5 overflow-x-auto">
+                <div className="flex space-x-0.5 overflow-x-auto pb-2">
                     {weeks.map((week, wi) => (
                         <div key={wi} className="flex flex-col space-y-0.5">
                             {week.map((day) => (
@@ -113,7 +113,7 @@ export const GitHubActivityChart = () => {
                 </div>
             )}
 
-            <div className="text-xs text-muted">
+            <div className="text-xs text-muted text-center sm:text-left">
                 {activityData.reduce((sum, d) => sum + d.count, 0)} contributions in the last year
             </div>
         </div>
